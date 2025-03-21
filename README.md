@@ -8,7 +8,7 @@ C# library for decoding [`Mapbox Vector Tiles @ v2.x`](https://www.mapbox.com/ve
 
 _**Decoding tiles created according to `Mapbox Vector Tile Specification @ v1.x` is not supported!**_
 
-Available as nuget package: [![nuget.org](https://img.shields.io/nuget/v/Mapbox.VectorTile.svg)](https://www.nuget.org/packages/Mapbox.VectorTile)
+Build status: [![Build status](https://ci.appveyor.com/api/projects/status/7b7wfjj0macduhgp/branch/master?svg=true)](https://ci.appveyor.com/project/memsom/vextile-mapbox-vector-tile-cs/branch/master)
 
 Vector tile parsers in other languages:
 * JavaScript: https://github.com/mapbox/vector-tile-js
