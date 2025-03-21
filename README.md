@@ -1,6 +1,8 @@
-# vector-tile-cs
+# VexTile Mapbox VectorTiles
 
-This project is based ont he last version of https://github.com/mapbox/vector-tile-cs. That project has not been moved to modern dotnet and therefore is hard to consume now. We have taken that version and updated the code to be compatible with .Net Standard, 8 and onwards.
+This project is part of the VexTile vector tile suite. While it is technically a drop in replacement for the original codebase, the namespaces have been sightly changed to avoid confusion.
+
+This project is based on the last version of https://github.com/mapbox/vector-tile-cs. That project has not been moved to modern dotnet and therefore is hard to consume now. We have taken that version and updated the code to be compatible with .Net Standard, 8 and onwards.
 
 C# library for decoding [`Mapbox Vector Tiles @ v2.x`](https://www.mapbox.com/vector-tiles/) ([vector tile specification](https://github.com/mapbox/vector-tile-spec)).
 
@@ -16,7 +18,7 @@ Vector tile parsers in other languages:
 
 ```c#
 byte[] data = //raw unzipped vectortile
-VectorTile vt = new VectorTile(data);
+VectorTileData vt = new VectorTileData(data);
 //get available layer names
 foreach(var lyrName in vt.LayerNames()) {
     //get layer by name
