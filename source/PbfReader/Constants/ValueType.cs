@@ -1,4 +1,4 @@
-﻿namespace Mapbox.VectorTile.Constants;
+﻿namespace VexTile.Mapbox.VectorTile.Constants;
 
 /// <summary>
 /// Available ypes for values https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#L17-L28

@@ -1,4 +1,4 @@
-namespace Mapbox.VectorTile.Constants;
+namespace VexTile.Mapbox.VectorTile.Constants;
 
 /// <summary>
 /// PBF wire types

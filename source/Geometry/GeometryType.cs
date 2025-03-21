@@ -1,11 +1,11 @@
 using System.ComponentModel;
 
-namespace Mapbox.VectorTile.Geometry;
+namespace VexTile.Mapbox.VectorTile.Geometry;
 
 /// <summary>
 /// Available geometry types
 /// </summary>
-public enum GeomType
+public enum GeometryType
 {
     Unknown = 0,
     [Description("Point")] Point = 1,

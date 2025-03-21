@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net7.0;net8.0;net9.0</TargetFrameworks>
+        <LangVersion>Latest</LangVersion>
+        <Configurations>Debug;Release</Configurations>
+        <Title>VexTile Mapbox VectorTile ExtensionMethods</Title>
+        <RootNamespace>VexTile.Mapbox.VectorTile.ExtensionMethods</RootNamespace>
+        <AssemblyName>VexTile.Mapbox.VectorTile.ExtensionMethods</AssemblyName>
+        <PackageId>VexTile.Mapbox.VectorTile.ExtensionMethods</PackageId>
+        <Nullable>disable</Nullable>
+        <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+        <UseRidGraph>true</UseRidGraph>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+        <DebugSymbols>true</DebugSymbols>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <DebugType>portable</DebugType>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <ErrorReport>prompt</ErrorReport>
+        <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+        <Prefer32Bit>false</Prefer32Bit>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <Optimize>true</Optimize>
+        <DebugType>portable</DebugType>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <ErrorReport>prompt</ErrorReport>
+        <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+        <Prefer32Bit>false</Prefer32Bit>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Geometry\VexTile.Mapbox.VectorTile.Geometry.csproj"/>
+        <ProjectReference Include="..\PbfReader\VexTile.Mapbox.VectorTile.PbfReader.csproj"/>
+        <ProjectReference Include="..\VectorTileReader\VexTile.Mapbox.VectorTile.VectorTileReader.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="NLog"/>
+    </ItemGroup>
+</Project>

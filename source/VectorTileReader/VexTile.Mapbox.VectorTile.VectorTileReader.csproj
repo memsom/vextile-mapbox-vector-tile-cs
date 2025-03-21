@@ -1,29 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net7.0;net8.0;net9.0</TargetFrameworks>
+    <LangVersion>Latest</LangVersion>
     <Configurations>Debug;Release</Configurations>
+    <Title>VexTile Mapbox Vector Tile Reader</Title>
+    <RootNamespace>VexTile.Mapbox.VectorTile</RootNamespace>
+    <AssemblyName>VexTile.Mapbox.VectorTile.VectorTileReader</AssemblyName>
+    <PackageId>VexTile.Mapbox.VectorTile.VectorTileReader</PackageId>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <UseRidGraph>true</UseRidGraph>
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Title>Mapbox Vector Tile Reader</Title>
-    <Copyright>Copyright (c) 2017, Mapbox</Copyright>
-    <PackageProjectUrl>https://github.com/mapbox/vector-tile-cs</PackageProjectUrl>
-    <PackageLicense>https://github.com/mapbox/vector-tile-cs/blob/master/LICENSE</PackageLicense>
-    <PackageIcon>mapbox.png</PackageIcon>
-    <RepositoryUrl>https://github.com/mapbox/vector-tile-cs</RepositoryUrl>
-    <RootNamespace>Mapbox.VectorTile</RootNamespace>
-    <AssemblyName>Mapbox.VectorTile.VectorTileReader</AssemblyName>
-    <Nullable>disable</Nullable>
-    <PackageReadmeFile>packagereadme.md</PackageReadmeFile>
-    <Version>1.0.0</Version>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\..\readme\packagereadme.md" Pack="true" PackagePath="\" />
-  </ItemGroup>
-  <!--Package Icon Include -->
-  <ItemGroup>
-    <None Include="..\..\..\images\mapbox.png" Pack="true" PackagePath="\" />
-  </ItemGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -50,8 +39,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geometry\Mapbox.VectorTile.Geometry.csproj"/>
-    <ProjectReference Include="..\PbfReader\Mapbox.VectorTile.PbfReader.csproj"/>
+    <ProjectReference Include="..\Geometry\VexTile.Mapbox.VectorTile.Geometry.csproj" />
+    <ProjectReference Include="..\PbfReader\VexTile.Mapbox.VectorTile.PbfReader.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NLog"/>

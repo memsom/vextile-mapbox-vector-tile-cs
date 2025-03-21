@@ -1,5 +1,7 @@
 # vector-tile-cs
 
+This project is based ont he last version of https://github.com/mapbox/vector-tile-cs. That project has not been moved to modern dotnet and therefore is hard to consume now. We have taken that version and updated the code to be compatible with .Net Standard, 8 and onwards.
+
 C# library for decoding [`Mapbox Vector Tiles @ v2.x`](https://www.mapbox.com/vector-tiles/) ([vector tile specification](https://github.com/mapbox/vector-tile-spec)).
 
 _**Decoding tiles created according to `Mapbox Vector Tile Specification @ v1.x` is not supported!**_
@@ -9,17 +11,6 @@ Available as nuget package: [![nuget.org](https://img.shields.io/nuget/v/Mapbox.
 Vector tile parsers in other languages:
 * JavaScript: https://github.com/mapbox/vector-tile-js
 * C++: https://github.com/mapbox/vector-tile
-
-# Build status
-master branch:
-* Travis: [![Build Status](https://travis-ci.com/mapbox/vector-tile-cs.svg?token=hLpUd9oZwpjSs5JzfqFa&branch=master)](https://travis-ci.com/mapbox/vector-tile-cs)
-* AppVeyor: [![Build status](https://ci.appveyor.com/api/projects/status/k8u69w8u13f7i0a7/branch/master?svg=true)](https://ci.appveyor.com/project/Mapbox/vector-tile-cs/branch/master)
-* Coveralls: [![Coverage Status](https://coveralls.io/repos/github/mapbox/vector-tile-cs/badge.svg?branch=master&t=q2Lud9)](https://coveralls.io/github/mapbox/vector-tile-cs?branch=master)
-
-# Depends
-
-Native C# implementation - no dependencies.
-`NUnit` and `NUnit3TestAdapter` for running tests - will get restored automatically when building the solution.
 
 #Example
 

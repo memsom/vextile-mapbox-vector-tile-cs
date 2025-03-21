@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Text;
-using Mapbox.VectorTile.Constants;
-using Mapbox.VectorTile.Geometry;
-using ValueType = Mapbox.VectorTile.Constants.ValueType;
 using System.Linq;
+using System.Text;
+using VexTile.Mapbox.VectorTile.Constants;
+using VexTile.Mapbox.VectorTile.Geometry;
+using ValueType = VexTile.Mapbox.VectorTile.Constants.ValueType;
 
 
-namespace Mapbox.VectorTile;
+namespace VexTile.Mapbox.VectorTile;
 
 public class VectorTileReaderException : Exception
 {
@@ -55,7 +55,7 @@ public class VectorTileReader
 
     private void layers(byte[] data)
     {
-        PbfReader tileReader = new PbfReader(data);
+        PbfReader tileReader = new(data);
         while (tileReader.NextByte())
         {
             if (_validate && !ConstantsAsDictionary.TileType.ContainsKey(tileReader.Tag))
@@ -67,7 +67,7 @@ public class VectorTileReader
             {
                 string name = null;
                 byte[] layerMessage = tileReader.View();
-                PbfReader layerView = new PbfReader(layerMessage);
+                PbfReader layerView = new(layerMessage);
                 while (layerView.NextByte())
                 {
                     if (layerView.Tag == (int)LayerType.Name)
@@ -108,16 +108,8 @@ public class VectorTileReader
     /// Collection of layers contained in the tile
     /// </summary>
     /// <returns>Collection of layer names</returns>
-    public ReadOnlyCollection<string> LayerNames()
-    {
-#if NET20 || PORTABLE || WINDOWS_UWP
-            string[] lyrNames = new string[_Layers.Keys.Count];
-            _Layers.Keys.CopyTo(lyrNames, 0);
-            return new ReadOnlyCollection<string>(lyrNames);
-#else
-        return _layers.Keys.ToList().AsReadOnly();
-#endif
-    }
+    public ReadOnlyCollection<string> LayerNames() =>
+        _layers.Keys.ToList().AsReadOnly();
 
     /// <summary>
     /// Get a tile layer by name
@@ -137,8 +129,8 @@ public class VectorTileReader
 
     private VectorTileLayer getLayer(byte[] data)
     {
-        VectorTileLayer layer = new VectorTileLayer(data);
-        PbfReader layerReader = new PbfReader(layer.Data);
+        VectorTileLayer layer = new(data);
+        PbfReader layerReader = new(layer.Data);
         while (layerReader.NextByte())
         {
             int layerType = layerReader.Tag;
@@ -167,7 +159,7 @@ public class VectorTileReader
                     break;
                 case LayerType.Values:
                     byte[] valueBuffer = layerReader.View();
-                    PbfReader valReader = new PbfReader(valueBuffer);
+                    PbfReader valReader = new(valueBuffer);
                     while (valReader.NextByte())
                     {
                         switch ((ValueType)valReader.Tag)
@@ -281,8 +273,8 @@ public class VectorTileReader
         , float scale = 1.0f
     )
     {
-        PbfReader featureReader = new PbfReader(data);
-        VectorTileFeature feat = new VectorTileFeature(layer, clipBuffer, scale);
+        PbfReader featureReader = new(data);
+        VectorTileFeature feat = new(layer, clipBuffer, scale);
         bool geomTypeSet = false;
         while (featureReader.NextByte())
         {
@@ -309,7 +301,7 @@ public class VectorTileReader
                         throw new VectorTileReaderException($"Layer [{layer.Name}] has unknown geometry type tag: {geomType}");
                     }
 
-                    feat.GeometryType = (GeomType)geomType;
+                    feat.GeometryType = (GeometryType)geomType;
                     geomTypeSet = true;
                     break;
                 case FeatureType.Geometry:

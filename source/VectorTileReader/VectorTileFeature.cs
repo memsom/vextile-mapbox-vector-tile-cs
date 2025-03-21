@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Mapbox.VectorTile.Geometry;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using VexTile.Mapbox.VectorTile.Geometry;
 
-
-namespace Mapbox.VectorTile;
+namespace VexTile.Mapbox.VectorTile;
 
 public class VectorTileFeature
 {
@@ -18,7 +17,7 @@ public class VectorTileFeature
         _layer = layer;
         _clipBuffer = clipBuffer;
         _scale = scale;
-        Tags = new List<int>();
+        Tags = new();
     }
 
 
@@ -40,8 +39,8 @@ public class VectorTileFeature
     public VectorTileLayer Layer { get { return _layer; } }
 
 
-    /// <summary><see cref="GeomType"/> of this feature</summary>
-    public GeomType GeometryType { get; set; }
+    /// <summary><see cref="Geometry.GeometryType"/> of this feature</summary>
+    public GeometryType GeometryType { get; set; }
 
 
     /// <summary>Geometry in internal tile coordinates</summary>
@@ -78,26 +77,26 @@ public class VectorTileFeature
             // HACK !!!
             // work around a 'feature' of clipper where the ring order gets mixed up
             // with multipolygons containing holes
-            if (geom.Count < 2 || GeometryType != GeomType.Polygon)
+            if (geom.Count < 2 || GeometryType != GeometryType.Polygon)
             {
                 // work on points, lines and single part polygons as before
-                geom = GeomUtils.ClipGeometries(geom, GeometryType, (long)_layer.Extent, clipBuffer.Value, scale.Value);
+                geom = GeometryUtils.ClipGeometries(geom, GeometryType, (long)_layer.Extent, clipBuffer.Value, scale.Value);
             }
             else
             {
                 // process every ring of a polygon in a separate loop
-                List<List<Point2d<long>>> newGeom = new List<List<Point2d<long>>>();
+                List<List<Point2d<long>>> newGeom = new();
                 int geomCount = geom.Count;
                 for (int i = 0; i < geomCount; i++)
                 {
                     List<Point2d<long>> part = geom[i];
-                    List<List<Point2d<long>>> tmp = new List<List<Point2d<long>>>();
+                    List<List<Point2d<long>>> tmp = new();
                     // flip order of inner rings to look like outer rings
                     bool isInner = signedPolygonArea(part) >= 0;
                     if (isInner) { part.Reverse(); }
 
                     tmp.Add(part);
-                    tmp = GeomUtils.ClipGeometries(tmp, GeometryType, (long)_layer.Extent, clipBuffer.Value, scale.Value);
+                    tmp = GeometryUtils.ClipGeometries(tmp, GeometryType, (long)_layer.Extent, clipBuffer.Value, scale.Value);
                     // ring was completely outside of clip border
                     if (0 == tmp.Count)
                     {
@@ -160,7 +159,7 @@ public class VectorTileFeature
             throw new VectorTileException($"Layer [{_layer.Name}]: uneven number of feature tag ids");
         }
 
-        Dictionary<string, object> properties = new Dictionary<string, object>();
+        Dictionary<string, object> properties = new();
         int tagCount = Tags.Count;
         for (int i = 0; i < tagCount; i += 2)
         {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Mapbox.VectorTile;
+namespace VexTile.Mapbox.VectorTile;
 
 /// <summary>
 /// Class to access a vector tile layer
@@ -14,9 +14,9 @@ public class VectorTileLayer
     /// </summary>
     private VectorTileLayer()
     {
-        FeaturesData = new List<byte[]>();
-        Keys = new List<string>();
-        Values = new List<object>();
+        FeaturesData = new();
+        Keys = new();
+        Values = new();
     }
 
 

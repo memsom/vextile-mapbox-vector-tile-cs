@@ -1,0 +1,50 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <IsPackable>false</IsPackable> <!--Default to not packable and override in projects that do need to be packed.-->
+    <!--Disable Run Api Compat Task causes Build failure on github actions with visual studio 2022 17.5 and .net Compilers Toolset 4.6-->
+    <RunApiCompat>false</RunApiCompat>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Copyright>Copyright (c) 2017, Mapbox</Copyright>
+    <PackageProjectUrl>https://github.com/mapbox/vector-tile-cs</PackageProjectUrl>
+    <PackageLicense>https://github.com/mapbox/vector-tile-cs/blob/master/LICENSE</PackageLicense>
+    <PackageIcon>mapbox.png</PackageIcon>
+    <RepositoryUrl>https://github.com/mapbox/vector-tile-cs</RepositoryUrl>
+    <Nullable>disable</Nullable>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>1.0.6</Version>
+  </PropertyGroup>
+
+  <!-- Common Project Properties -->
+  <PropertyGroup>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Update="NUnit.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <ErrorReport>prompt</ErrorReport>
+    <!--
+        NETSDK1206 - this is a warning about runtime identifiers being triggered by Sqlite-Net's dependencies.
+      -->
+    <NoWarn>$(NoWarn);NETSDK1206;MSB3884</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <!--Package Icon Include -->
+  <ItemGroup>
+    <None Include="..\..\images\mapbox.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

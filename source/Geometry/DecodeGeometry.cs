@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Mapbox.VectorTile.Constants;
+using VexTile.Mapbox.VectorTile.Constants;
 
-namespace Mapbox.VectorTile.Geometry;
+namespace VexTile.Mapbox.VectorTile.Geometry;
 
 /// <summary>
 /// Decode tile geometries
@@ -27,13 +27,13 @@ public static class DecodeGeometry
     /// <returns>List<List<Point2d<long>>>> of decoded geometries (in internal tile coordinates)</returns>
     public static List<List<Point2d<long>>> GetGeometry(
         ulong extent
-        , GeomType geomType
+        , GeometryType geomType
         , List<uint> geometryCommands
         , float scale = 1.0f
     )
     {
-        List<List<Point2d<long>>> geomOut = new List<List<Point2d<long>>>();
-        List<Point2d<long>> geomTmp = new List<Point2d<long>>();
+        List<List<Point2d<long>>> geomOut = new();
+        List<Point2d<long>> geomTmp = new();
         long cursorX = 0;
         long cursorY = 0;
 
@@ -56,11 +56,11 @@ public static class DecodeGeometry
                     if (cmd == Commands.MoveTo && geomTmp.Count > 0)
                     {
                         geomOut.Add(geomTmp);
-                        geomTmp = new List<Point2d<long>>();
+                        geomTmp = new();
                     }
 
                     //Point2d pntTmp = new Point2d(cursorX, cursorY);
-                    Point2d<long> pntTmp = new Point2d<long>()
+                    Point2d<long> pntTmp = new()
                     {
                         X = cursorX,
                         Y = cursorY
@@ -69,7 +69,7 @@ public static class DecodeGeometry
                 }
             }
 
-            if (cmd == Commands.ClosePath && geomType == GeomType.Polygon && geomTmp.Count > 0)
+            if (cmd == Commands.ClosePath && geomType == GeometryType.Polygon && geomTmp.Count > 0)
             {
                 geomTmp.Add(geomTmp[0]);
             }
@@ -96,10 +96,10 @@ public static class DecodeGeometry
         , float scale = 1.0f
     )
     {
-        List<List<Point2d<T>>> outGeom = new List<List<Point2d<T>>>();
+        List<List<Point2d<T>>> outGeom = new();
         foreach (var inPart in inGeom)
         {
-            List<Point2d<T>> outPart = new List<Point2d<T>>();
+            List<Point2d<T>> outPart = new();
             foreach (var inVertex in inPart)
             {
                 float fX = ((float)inVertex.X) * scale;
@@ -114,19 +114,19 @@ public static class DecodeGeometry
                 {
                     int x = Convert.ToInt32(fX);
                     int y = Convert.ToInt32(fY);
-                    outPart.Add(new Point2d<T>((T)(object)x, (T)(object)y));
+                    outPart.Add(new((T)(object)x, (T)(object)y));
                 }
                 else if (typeof(T) == typeof(long))
                 {
                     long x = Convert.ToInt64(fX);
                     long y = Convert.ToInt64(fY);
-                    outPart.Add(new Point2d<T>((T)(object)x, (T)(object)y));
+                    outPart.Add(new((T)(object)x, (T)(object)y));
                 }
                 else if (typeof(T) == typeof(float))
                 {
                     float x = Convert.ToSingle(fX);
                     float y = Convert.ToSingle(fY);
-                    outPart.Add(new Point2d<T>((T)(object)x, (T)(object)y));
+                    outPart.Add(new((T)(object)x, (T)(object)y));
                 }
             }
 
@@ -146,7 +146,7 @@ public static class DecodeGeometry
         //    ((x >> 1) ^ (-(x & 1))),
         //    ((y >> 1) ^ (-(y & 1)))
         //);
-        return new Point2d<long>()
+        return new()
         {
             X = ((x >> 1) ^ (-(x & 1))),
             Y = ((y >> 1) ^ (-(y & 1)))

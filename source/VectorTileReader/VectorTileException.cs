@@ -1,6 +1,6 @@
 using System;
 
-namespace Mapbox.VectorTile;
+namespace VexTile.Mapbox.VectorTile;
 
 public class VectorTileException : Exception
 {

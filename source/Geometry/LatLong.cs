@@ -1,11 +1,11 @@
 using System.Globalization;
 
-namespace Mapbox.VectorTile.Geometry;
+namespace VexTile.Mapbox.VectorTile.Geometry;
 
 /// <summary>
 /// Structure to hold a LatLng coordinate pair
 /// </summary>
-public struct LatLng
+public struct LatLong
 {
     public double Lat { get; set; }
     public double Lng { get; set; }

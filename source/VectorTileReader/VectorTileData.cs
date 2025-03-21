@@ -1,8 +1,7 @@
-﻿using System.Diagnostics;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 
-
-namespace Mapbox.VectorTile;
+namespace VexTile.Mapbox.VectorTile;
 
 /// <summary>
 /// Class to access the tile data
@@ -18,7 +17,7 @@ public class VectorTileData
     /// <param name="validate">If true, run checks if the tile contains valid data. Decreases decoding speed.</param>
     public VectorTileData(byte[] data, bool validate = true)
     {
-        _vtr = new VectorTileReader(data, validate);
+        _vtr = new(data, validate);
     }
 
 

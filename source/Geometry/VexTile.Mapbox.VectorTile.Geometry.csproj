@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net7.0;net8.0;net9.0</TargetFrameworks>
+        <LangVersion>Latest</LangVersion>
+        <Configurations>Debug;Release</Configurations>
+        <RootNamespace>VexTile.Mapbox.VectorTile.Geometry</RootNamespace>
+        <AssemblyName>VexTile.Mapbox.VectorTile.Geometry</AssemblyName>
+        <PackageId>VexTile.Mapbox.VectorTile.Geometry</PackageId>
+        <Nullable>disable</Nullable>
+        <Title>VexTile Mapbox VectorTile Geometry</Title>
+        <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+        <UseRidGraph>true</UseRidGraph>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+        <DebugSymbols>true</DebugSymbols>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <DebugType>portable</DebugType>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <ErrorReport>prompt</ErrorReport>
+        <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+        <Prefer32Bit>false</Prefer32Bit>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <Optimize>true</Optimize>
+        <DebugType>portable</DebugType>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <ErrorReport>prompt</ErrorReport>
+        <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+        <Prefer32Bit>false</Prefer32Bit>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\PbfReader\VexTile.Mapbox.VectorTile.PbfReader.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="NLog"/>
+    </ItemGroup>
+</Project>

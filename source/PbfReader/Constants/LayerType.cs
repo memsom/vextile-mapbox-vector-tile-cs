@@ -1,4 +1,4 @@
-namespace Mapbox.VectorTile.Constants;
+namespace VexTile.Mapbox.VectorTile.Constants;
 
 /// <summary>
 /// Types contained in a layer https://github.com/mapbox/vector-tile-spec/blob/master/2.1/vector_tile.proto#L50-L73

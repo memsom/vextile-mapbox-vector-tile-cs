@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Mapbox.VectorTile.Constants;
+namespace VexTile.Mapbox.VectorTile.Constants;
 
 /// <summary>
 /// [wip] Investigate how to increase decoding speed. Looking up values in enums is slow

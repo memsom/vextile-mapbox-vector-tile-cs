@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using Mapbox.VectorTile.Constants;
+using VexTile.Mapbox.VectorTile.Constants;
 
 
-namespace Mapbox.VectorTile;
-
+namespace VexTile.Mapbox.VectorTile;
 
 // implement DataView using the same byte array instead of copying byte arrays
 //public struct DataView {
@@ -106,7 +105,7 @@ public class PbfReader
     /// <returns>List of decoded `uint`s</returns>
     public List<uint> GetPackedUnit32()
     {
-        List<uint> values = new List<uint>(200);
+        List<uint> values = new(200);
         ulong sizeInByte = (ulong)Varint();
         ulong end = _pos + sizeInByte;
         while (_pos < end)
@@ -120,12 +119,12 @@ public class PbfReader
 
     public List<int> GetPackedSInt32()
     {
-        List<int> values = new List<int>(200);
+        List<int> values = new(200);
         ulong sizeInByte = (ulong)Varint();
         ulong end = _pos + sizeInByte;
         while (_pos < end)
         {
-            values.Add(decodeZigZag32((int)Varint()));
+            values.Add(DecodeZigZag32((int)Varint()));
         }
 
         return values;
@@ -134,25 +133,25 @@ public class PbfReader
 
     public List<long> GetPackedSInt64()
     {
-        List<long> values = new List<long>(200);
+        List<long> values = new(200);
         ulong sizeInByte = (ulong)Varint();
         ulong end = _pos + sizeInByte;
         while (_pos < end)
         {
-            values.Add(decodeZigZag64(Varint()));
+            values.Add(DecodeZigZag64(Varint()));
         }
 
         return values;
     }
 
 
-    private int decodeZigZag32(int value)
+    private int DecodeZigZag32(int value)
     {
         return (value >> 1) ^ -(value & 1);
     }
 
 
-    private long decodeZigZag64(long value)
+    private long DecodeZigZag64(long value)
     {
         return (value >> 1) ^ -(value & 1);
     }
